@@ -12,7 +12,8 @@ const usuarios = [
         email: 'jsilva@gmail.com',
         idade: 29,
         perfil_id: 1,
-        status: 'ATIVO'
+        status: 'ATIVO',
+        salario: 1000
     },
     {
         id: proximoId(),
@@ -20,7 +21,8 @@ const usuarios = [
         email: 'rafajunior@gmail.com',
         idade: 30,
         perfil_id: 1,
-        status: 'BLOQUEADO'
+        status: 'BLOQUEADO',
+        salario: 1000
     },
     {
         id: proximoId(),
@@ -28,7 +30,8 @@ const usuarios = [
         email: 'dsmith@gmail.com',
         idade: 24,
         perfil_id: 2,
-        status: 'ATIVO'
+        status: 'ATIVO',
+        salario: 1000
     },
 ]
 

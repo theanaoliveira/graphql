@@ -1,17 +1,28 @@
 const { usuarios, proximoId } = require("../data/db")
 
+function findUser(filtro) {
+    if (!filtro) return -1
+
+    const {id, email} = filtro
+
+    return usuarios.findIndex(u=> u.id === id) == -1 ? 
+        usuarios.findIndex(u=> u.email == email) : 
+        usuarios.findIndex(u=> u.id === id);
+}
+
+
 module.exports = {   
     //{ nome, email, idade }
-    novoUsuario(_, args)
+    novoUsuario(_, { dados })
     {
-        const emailExistente = usuarios.some(u=> u.email === args.email);
+        const emailExistente = usuarios.some(u=> u.email === dados.email);
 
         if (emailExistente)
             throw new Error('E-mail já cadastrado')
 
         const novo = {
             id : proximoId,
-            ...args,
+            ...dados,
             perfil_id: 1,
             status: 'ATIVO'
         }
@@ -20,9 +31,9 @@ module.exports = {
         return novo;
     },
 
-    excluirUsuario(_, { id })
+    excluirUsuario(_, { filtro })
     {
-        const i = usuarios.findIndex(u=> u.id === id);
+        const i = findUser(filtro)
 
         if (i < 0) return null
 
@@ -31,21 +42,18 @@ module.exports = {
         return excluidos ? excluidos[0] : null;
     },
 
-    alterarUsuario(_, args)
+    alterarUsuario(_, { dados, filtro })
     {
-        const usuario = usuarios.find(u=> u.id === args.id);
+        const i = findUser(filtro)
 
-        if (usuario == null)
-            throw new Error('Usuario não encontrado')
+        if (i < 0) return null
 
-        usuario.nome = args.nome
-        usuario.email = args.email
-        usuario.idade = args.idade
+        const usuario = {
+            ...usuarios[i],
+            ...dados
+        }
 
-        // const test = {
-        //     ...usuario,
-        //     ...args
-        // }
+        usuarios.splice(i, 1, usuario)
 
         return usuario;
     }
