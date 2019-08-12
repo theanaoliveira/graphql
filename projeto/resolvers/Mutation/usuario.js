@@ -1,4 +1,4 @@
-const { usuarios, proximoId } = require("../data/db")
+const { usuarios, proximoId } = require("../../data/db")
 
 function findUser(filtro) {
     if (!filtro) return -1
