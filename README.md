@@ -4,11 +4,11 @@ Projeto voltado para aprendizado de GraphQL, inicialmente utilizando a linguagem
 
 O projeto está divido em pastas, sendo elas:
 
-#data
+# data
   - Objeto inicialmente utilizando como um banco in memory
 
-#resolvers 
+# resolvers 
   - Objetos .js onde é aplicada a regra de negocio
  
-#schema
+# schema
   - Objetos .graphql onde são inicializados os tipos que serão implementados
