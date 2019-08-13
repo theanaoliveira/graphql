@@ -12,4 +12,11 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GraphQL.Application\GraphQL.Application.csproj" />
+    <ProjectReference Include="..\GraphQL.Domain\GraphQL.Domain.csproj" />
+    <ProjectReference Include="..\GraphQL.Infrastructure\GraphQL.Infrastructure.csproj" />
+    <ProjectReference Include="..\GraphQL.Webapi\GraphQL.Webapi.csproj" />
+  </ItemGroup>
+
 </Project>

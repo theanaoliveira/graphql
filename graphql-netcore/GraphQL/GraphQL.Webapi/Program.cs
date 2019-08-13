@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using GraphQL.Application.UseCases.Usuario;
+using GraphQL.Types;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace GraphQL.Webapi
 {
@@ -14,6 +10,15 @@ namespace GraphQL.Webapi
     {
         public static void Main(string[] args)
         {
+            var schema = new Schema { Query = new UsuarioQuery() };
+
+            var json = schema.Execute(e =>
+            {
+                e.Query = "{ user { id name age email vip} }";
+            });
+
+            Console.WriteLine(json);
+
             CreateWebHostBuilder(args).Build().Run();
         }
 
