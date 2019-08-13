@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\data",
+    "\\resolvers",
+    "\\resolvers\\Mutation",
+    "\\resolvers\\Query",
+    "\\schema"
+  ],
+  "SelectedNode": "\\resolvers\\Mutation\\perfil.js",
+  "PreviewInSolutionExplorer": false
+}

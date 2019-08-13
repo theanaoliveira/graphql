@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-NetCore", "GraphQL-NetCore\GraphQL-NetCore.csproj", "{CE31E57C-4DEE-4405-AEAD-5843333BE6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-NetCore.Domain", "GraphQL-NetCore.Domain\GraphQL-NetCore.Domain.csproj", "{5711A202-C6A5-4CAF-AFC7-4C1FBBC20E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-NetCore.Application", "GraphQL-NetCore.Application\GraphQL-NetCore.Application.csproj", "{92F61D2C-9DF5-4EB4-BD36-3ED1BBD7B673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-NetCore.Infrastructure", "GraphQL-NetCore.Infrastructure\GraphQL-NetCore.Infrastructure.csproj", "{B0DC6EFB-9C49-426A-BEAE-FB9D7603E362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-NetCore.Tests", "GraphQL-NetCore.Tests\GraphQL-NetCore.Tests.csproj", "{F51627A8-F081-49DA-BAE6-D8BCC5C10FF2}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AB2B6784-723A-44F8-9CD2-5399662DD518}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE31E57C-4DEE-4405-AEAD-5843333BE6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE31E57C-4DEE-4405-AEAD-5843333BE6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE31E57C-4DEE-4405-AEAD-5843333BE6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE31E57C-4DEE-4405-AEAD-5843333BE6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5711A202-C6A5-4CAF-AFC7-4C1FBBC20E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5711A202-C6A5-4CAF-AFC7-4C1FBBC20E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5711A202-C6A5-4CAF-AFC7-4C1FBBC20E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5711A202-C6A5-4CAF-AFC7-4C1FBBC20E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92F61D2C-9DF5-4EB4-BD36-3ED1BBD7B673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F61D2C-9DF5-4EB4-BD36-3ED1BBD7B673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92F61D2C-9DF5-4EB4-BD36-3ED1BBD7B673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92F61D2C-9DF5-4EB4-BD36-3ED1BBD7B673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0DC6EFB-9C49-426A-BEAE-FB9D7603E362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0DC6EFB-9C49-426A-BEAE-FB9D7603E362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0DC6EFB-9C49-426A-BEAE-FB9D7603E362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0DC6EFB-9C49-426A-BEAE-FB9D7603E362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51627A8-F081-49DA-BAE6-D8BCC5C10FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51627A8-F081-49DA-BAE6-D8BCC5C10FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51627A8-F081-49DA-BAE6-D8BCC5C10FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51627A8-F081-49DA-BAE6-D8BCC5C10FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB2B6784-723A-44F8-9CD2-5399662DD518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2B6784-723A-44F8-9CD2-5399662DD518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB2B6784-723A-44F8-9CD2-5399662DD518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB2B6784-723A-44F8-9CD2-5399662DD518}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAB6F002-1BBF-4827-B94F-C5601E7DC776}
+	EndGlobalSection
+EndGlobal
