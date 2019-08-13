@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  graphql.webapi:
+    image: graphqlwebapi
+    ports:
+      - "53431:80"
+      - "44387:443"

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>GraphQL_NetCore.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>

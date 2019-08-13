@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  graphql.webapi:
+    image: ${DOCKER_REGISTRY-}graphqlwebapi
+    build:
+      context: .
+      dockerfile: GraphQL.Webapi/Dockerfile

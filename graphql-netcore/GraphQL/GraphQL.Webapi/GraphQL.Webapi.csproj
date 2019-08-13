@@ -3,9 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>GraphQL_NetCore</RootNamespace>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>8c9b9fe7-a657-46b0-9a58-f5f2e57948b2</UserSecretsId>
+    <UserSecretsId>808ff15b-24c1-43c0-b808-db27b379561d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 

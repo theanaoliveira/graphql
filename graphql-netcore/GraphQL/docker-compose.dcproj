@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>ab2b6784-723a-44f8-9cd2-5399662dd518</ProjectGuid>
+    <ProjectGuid>8f38a501-7273-4f02-b60a-9d65684b0e1a</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>graphql-netcore</DockerServiceName>
+    <DockerServiceName>graphql.webapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

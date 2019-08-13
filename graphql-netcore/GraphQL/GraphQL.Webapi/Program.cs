@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace GraphQL_NetCore
+namespace GraphQL.Webapi
 {
     public class Program
     {

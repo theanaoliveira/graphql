@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQL_NetCore
+namespace GraphQL.Webapi
 {
     public class Startup
     {
