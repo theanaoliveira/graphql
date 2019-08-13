@@ -3,6 +3,13 @@ version: '3.7'
 services:
   graphql.webapi:
     image: graphqlwebapi
+    build:
+      context: .
+      dockerfile: GraphQL.Webapi/Dockerfile
     ports:
-      - "53431:80"
-      - "44387:443"
+      - 8081:80
+    networks:
+      - graphql-network
+
+networks:
+  graphql-network:
