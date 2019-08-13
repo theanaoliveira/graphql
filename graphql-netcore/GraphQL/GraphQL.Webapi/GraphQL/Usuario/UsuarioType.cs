@@ -1,9 +1,8 @@
-﻿using GraphQL.Domain.Usuario;
-using GraphQL.Types;
+﻿using GraphQL.Types;
 
-namespace GraphQL.Webapi.GraphQL
+namespace GraphQL.Webapi.GraphQL.Usuario
 {
-    public class UsuarioType : ObjectGraphType<Usuario>
+    public class UsuarioType : ObjectGraphType<Domain.Usuario.Usuario>
     {
         public UsuarioType()
         {

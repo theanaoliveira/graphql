@@ -8,8 +8,4 @@
     <ProjectReference Include="..\GraphQL.Domain\GraphQL.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GraphQL.Domain.Usuario
+﻿namespace GraphQL.Domain.Usuario
 {
     public class Usuario
     {

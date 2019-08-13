@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-namespace GraphQL.Webapi.GraphQL
+namespace GraphQL.Webapi.GraphQL.Usuario
 {
     public class UsuarioSchema : Schema
     {

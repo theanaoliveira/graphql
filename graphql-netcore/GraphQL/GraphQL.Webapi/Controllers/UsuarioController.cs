@@ -1,6 +1,9 @@
-﻿using GraphQL.Types;
-using GraphQL.Webapi.GraphQL;
+﻿using GraphQL.Client;
+using GraphQL.Common.Request;
+using GraphQL.Domain.Usuario;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GraphQL.Webapi.Controllers
 {
@@ -8,23 +11,22 @@ namespace GraphQL.Webapi.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private string Users()
-        {
-            var schema = new Schema { Query = new UsuarioQuery() };
-
-            var json = schema.Execute(e =>
-            {
-                e.Query = "{ user { id name age email vip status} }";
-            });
-
-            return json;
-        }
-
-
         [HttpGet]
-        public string Get()
+        public async Task<List<Usuario>> GetAsync()
         {
-            return Users();
+            using (var graphQL = new GraphQLClient("http://localhost:8081/graphql"))
+            {
+                var query = new GraphQLRequest
+                {
+                    Query = @" 
+                        { users 
+                            { name email } 
+                        }",
+                };
+
+                var response = await graphQL.PostAsync(query);
+                return response.GetDataFieldAs<List<Usuario>>("users");
+            }
         }
     }
 }

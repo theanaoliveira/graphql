@@ -1,11 +1,10 @@
-﻿using GraphQL.Domain.Usuario;
-using System;
+﻿using GraphQL.Application.Repositories;
+using GraphQL.Domain.Usuario;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphQL.Application.UseCases.Usuario
 {
-    public class UsuarioUseCase
+    public class UsuarioUseCase: IUsuarioUseCase
     {
         public List<Domain.Usuario.Usuario> Execute()
         {
