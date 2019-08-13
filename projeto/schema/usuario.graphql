@@ -15,11 +15,6 @@ enum UsuarioStatus {
     BLOQUEADO
 }
 
-type Perfil {
-    id: Int!
-    nome: String!
-}
-
 input UsuarioInput {
     nome: String
     email: String
@@ -29,4 +24,17 @@ input UsuarioInput {
 input UsuarioFiltro {
     id: Int
     email: String
+}
+
+type Perfil {
+    id: Int!
+    nome: String!
+}
+
+input PerfilInput {
+    nome: String
+}
+
+input PerfilFiltro {
+    id: Int
 }

@@ -37,11 +37,11 @@ const usuarios = [
 
 const perfis = [
     {
-        id: 1,
+        id: proximoId(),
         nome: 'Comum'
     },
     {
-        id: 2,
+        id: proximoId(),
         nome: 'Administrador'
     }
 ]
