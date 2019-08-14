@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GraphQL.Application.Repositories
+namespace GraphQL.Application.UseCases.Perfil
 {
     public interface IPerfilUseCase
     {

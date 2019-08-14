@@ -1,21 +1,25 @@
 ﻿using Autofac;
 using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
-using GraphQL.Application.Repositories;
-using GraphQL.Application.UseCases.Perfil.GraphQL;
-using GraphQL.Application.UseCases.Usuario.GraphQL;
 using GraphQL.Infrastructure.GraphQL;
 using GraphQL.Infrastructure.Modules;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using GraphQL.Webapi.GraphQL.Usuario;
 using GraphQL.Webapi.Modules;
+using GraphQL.Webapi.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NSwag;
 using System;
+using System.Linq;
 
+[assembly: ApiConventionType(typeof(ApiConventions))]
 namespace GraphQL.Webapi
 {
     public class Startup
@@ -39,6 +43,29 @@ namespace GraphQL.Webapi
             services.AddMvc();
             services.AddGraphQL(o => { o.ExposeExceptions = false; }).AddGraphTypes(ServiceLifetime.Scoped);
 
+            services.AddSwaggerDocument(document =>
+            {
+                document.Title = "GraphQL";
+                document.Version = "v1";
+                document.PostProcess = s =>
+                {
+                    s.Paths.ToList().ForEach(p =>
+                    {
+                        p.Value.Parameters.Add(
+                        new OpenApiParameter()
+                        {
+                            Kind = OpenApiParameterKind.Header,
+                            Type = NJsonSchema.JsonObjectType.String,
+                            IsRequired = false,
+                            Name = "Accept-Language",
+                            Description = "pt-BR or en-US",
+                            Default = "pt-BR"
+                        });
+                    });
+                };
+            });
+
+
             var builder = new ContainerBuilder();
 
             builder.Register<IDependencyResolver>(c =>
@@ -47,7 +74,9 @@ namespace GraphQL.Webapi
                 return new FuncDependencyResolver(type => context.Resolve(type));
             });
 
+            builder.RegisterModule<Infrastructure.Modules.Module>();
             builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<InfrastructureModule>();
             builder.RegisterModule<WebApiModule>();
 
             builder.Populate(services);
@@ -64,9 +93,45 @@ namespace GraphQL.Webapi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             app.UseGraphQL<GraphQLSchema>("/graphql");
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions() { GraphQLEndPoint = "/graphql" });
+
+            app.UseOpenApi(config =>
+            {
+                config.PostProcess = (document, request) =>
+                {
+                    document.Host = ExtractHost(request);
+                    document.BasePath = ExtractPath(request);
+                    document.Schemes.Clear();
+                };
+            });
+
+            app.UseSwaggerUi3(config => config.TransformToExternalPath = (route, request) => ExtractPath(request) + route);
+
+            //Redireciona swagger como pagina inicial
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
             app.UseMvc();
         }
+
+        private string ExtractHost(HttpRequest request) =>
+            request.Headers.ContainsKey("X-Forwarded-Host") ?
+                new Uri($"{ExtractProto(request)}://{request.Headers["X-Forwarded-Host"].First()}").Host :
+                    request.Host.Value;
+
+        private string ExtractProto(HttpRequest request) =>
+            request.Headers["X-Forwarded-Proto"].FirstOrDefault() ?? request.Protocol;
+
+        private string ExtractPath(HttpRequest request) =>
+            request.Headers.ContainsKey("X-Forwarded-Prefix") ?
+                request.Headers["X-Forwarded-Prefix"].FirstOrDefault() :
+                string.Empty;
     }
 }

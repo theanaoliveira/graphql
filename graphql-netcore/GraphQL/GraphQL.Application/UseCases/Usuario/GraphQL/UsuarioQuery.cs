@@ -5,12 +5,12 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
 {
     public class UsuarioQuery : ObjectGraphType, IGraphQueryMarker
     {
-        private readonly IUsuarioUseCase usuarioUseCase;
-                
-        public UsuarioQuery(IUsuarioUseCase usuarioUseCase)
+        private readonly IUsersRepository usersRepository;
+
+        public UsuarioQuery(IUsersRepository usersRepository)
         {
-            this.usuarioUseCase = usuarioUseCase;
-            Field<ListGraphType<UsuarioType>>("users", resolve: context => this.usuarioUseCase.Execute());
+            this.usersRepository = usersRepository;
+            Field<ListGraphType<UsuarioType>>("users", resolve: context => this.usersRepository.GetUsers());
         }
     }
 }
