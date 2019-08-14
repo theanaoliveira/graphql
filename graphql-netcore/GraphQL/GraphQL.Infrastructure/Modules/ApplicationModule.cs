@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using GraphQL.Types;
+using GraphQL.Application;
+using GraphQL.Infrastructure.GraphQL;
 
 namespace GraphQL.Infrastructure.Modules
 {
@@ -7,9 +8,12 @@ namespace GraphQL.Infrastructure.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(Application.UseCases.Usuario.UsuarioUseCase).Assembly)
+            builder.RegisterAssemblyTypes(typeof(ApplicationException).Assembly)
                 .AsImplementedInterfaces()
                 .AsSelf().InstancePerLifetimeScope();
+
+            builder.RegisterType<GraphQLSchema>().InstancePerLifetimeScope();
+            builder.RegisterType<GraphQLQuery>().AsSelf().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

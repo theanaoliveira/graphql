@@ -1,9 +1,9 @@
 ﻿using GraphQL.Application.Repositories;
 using GraphQL.Types;
 
-namespace GraphQL.Webapi.GraphQL.Usuario
+namespace GraphQL.Application.UseCases.Usuario.GraphQL
 {
-    public class UsuarioQuery : ObjectGraphType
+    public class UsuarioQuery : ObjectGraphType, IGraphQueryMarker
     {
         private readonly IUsuarioUseCase usuarioUseCase;
                 

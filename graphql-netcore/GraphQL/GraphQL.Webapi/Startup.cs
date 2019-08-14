@@ -1,10 +1,15 @@
 ﻿using Autofac;
 using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
+using GraphQL.Application.Repositories;
+using GraphQL.Application.UseCases.Perfil.GraphQL;
+using GraphQL.Application.UseCases.Usuario.GraphQL;
+using GraphQL.Infrastructure.GraphQL;
 using GraphQL.Infrastructure.Modules;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using GraphQL.Webapi.GraphQL.Usuario;
+using GraphQL.Webapi.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +36,8 @@ namespace GraphQL.Webapi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //GraphQL configuration
-            //services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddMvc();
+            services.AddGraphQL(o => { o.ExposeExceptions = false; }).AddGraphTypes(ServiceLifetime.Scoped);
 
             var builder = new ContainerBuilder();
 
@@ -43,11 +48,7 @@ namespace GraphQL.Webapi
             });
 
             builder.RegisterModule<ApplicationModule>();
-
-            services.AddMvc();
-
-            services.AddScoped<UsuarioSchema>();
-            services.AddGraphQL(o => { o.ExposeExceptions = false; }).AddGraphTypes(ServiceLifetime.Scoped);
+            builder.RegisterModule<WebApiModule>();
 
             builder.Populate(services);
 
@@ -63,9 +64,8 @@ namespace GraphQL.Webapi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseGraphQL<UsuarioSchema>();
+            app.UseGraphQL<GraphQLSchema>("/graphql");
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions() { GraphQLEndPoint = "/graphql" });
-
             app.UseMvc();
         }
     }

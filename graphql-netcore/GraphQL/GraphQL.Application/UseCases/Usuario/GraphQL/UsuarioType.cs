@@ -1,6 +1,7 @@
-﻿using GraphQL.Types;
+﻿using GraphQL.Application.UseCases.Perfil.GraphQL;
+using GraphQL.Types;
 
-namespace GraphQL.Webapi.GraphQL.Usuario
+namespace GraphQL.Application.UseCases.Usuario.GraphQL
 {
     public class UsuarioType : ObjectGraphType<Domain.Usuario.Usuario>
     {
@@ -14,6 +15,9 @@ namespace GraphQL.Webapi.GraphQL.Usuario
             Field(x => x.Email).Description("E-mail of user");
             Field(x => x.Age).Description("Age of user");
             Field(x => x.Vip).Description("If this user is vip");
+            Field(x => x.Salario);
+            Field<UsuarioStatusType>("status");
+            Field<PerfilType>("perfil");
         }
     }
 }
