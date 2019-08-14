@@ -9,7 +9,7 @@ services:
     ports:
       - 8081:80
     environment:
-      GRAPHQL_CONN: Host=graphql-db;Port=5432;Database=ChargeRuler;User Id=postgres;Password=postgres;
+      GRAPHQL_CONN: Host=graphql-db;Port=5432;Database=GraphQL;User Id=postgres;Password=postgres;
     networks:
       - graphql-network
     depends_on:

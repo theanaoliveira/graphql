@@ -18,8 +18,4 @@
     <ProjectReference Include="..\GraphQL.Domain\GraphQL.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="PostgresDataAccess\Entities\" />
-  </ItemGroup>
-
 </Project>
