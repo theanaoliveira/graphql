@@ -1,14 +1,17 @@
-﻿namespace GraphQL.Domain.Perfil
+﻿using GraphQL.Domain.Validator;
+
+namespace GraphQL.Domain.Perfil
 {
-    public class Perfil
+    public class Perfil: Entity
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
 
         public Perfil(int id, string name)
         {
             Id = id;
             Name = name;
+
+            Validate(this, new PerfilValidator());
         }
     }
 }
