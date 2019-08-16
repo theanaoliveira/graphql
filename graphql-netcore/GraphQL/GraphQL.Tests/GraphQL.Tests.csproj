@@ -23,8 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cases\Application\" />
-    <Folder Include="Cases\Infrastructure\" />
     <Folder Include="Cases\WebApi\" />
   </ItemGroup>
 

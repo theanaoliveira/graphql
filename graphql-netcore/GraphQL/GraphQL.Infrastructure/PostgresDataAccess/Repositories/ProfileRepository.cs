@@ -17,6 +17,24 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             this.mapper = mapper;
         }
 
+        public int Add(Perfil perfil)
+        {
+            using (var context = new Context())
+            {
+                context.Perfil.Add(mapper.Map<Entities.Perfil>(perfil));
+                return context.SaveChanges();
+            }
+        }
+
+        public int Delete(Perfil perfil)
+        {
+            using (var context = new Context())
+            {
+                context.Perfil.Remove(mapper.Map<Entities.Perfil>(perfil));
+                return context.SaveChanges();
+            }
+        }
+
         public List<Perfil> GetProfile()
         {
             var perfis = new List<Perfil>();

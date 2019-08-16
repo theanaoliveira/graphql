@@ -8,5 +8,9 @@ namespace GraphQL.Application.Repositories
         List<Usuario> GetUsers();
 
         Usuario GetUsers(int id);
+
+        int Add(Usuario usuario);
+
+        int Delete(Usuario usuario);
     }
 }

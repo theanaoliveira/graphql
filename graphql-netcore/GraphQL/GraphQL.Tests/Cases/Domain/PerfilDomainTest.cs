@@ -1,8 +1,5 @@
 ﻿using FluentAssertions;
 using GraphQL.Tests.Builders.Perfil;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace GraphQL.Tests.Cases.Domain
