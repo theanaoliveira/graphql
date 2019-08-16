@@ -9,7 +9,7 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
             Name = "Profile";
             Description = "Object to get informations of profile";
 
-            Field(x => x.Id).Description("Profile id");
+            Field<IdGraphType>("id");
             Field(x => x.Name).Description("Profile name");
         }
     }

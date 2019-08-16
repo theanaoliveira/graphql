@@ -3,7 +3,7 @@ using GraphQL.Webapi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace GraphQL.Webapi.UseCases.GetUsers
+namespace GraphQL.Webapi.UseCases.Usuario
 {
     [Route("api/[controller]")]
     [ApiController]

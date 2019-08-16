@@ -1,11 +1,12 @@
-﻿using System;
+﻿using GraphQL.Domain.Usuario;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphQL.Application.Repositories
 {
     public interface IUsersRepository
     {
-        List<Domain.Usuario.Usuario> GetUsers();
+        List<Usuario> GetUsers();
+
+        Usuario GetUsers(int id);
     }
 }

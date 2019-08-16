@@ -39,6 +39,7 @@ namespace GraphQL.Infrastructure.Modules
                 using (var context = new Context())
                 {
                     context.Database.Migrate();
+                    ContextInitializer.Seed(context);
                 }
             }
         }

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 
 namespace GraphQL.Application.UseCases.Perfil
 {
     public interface IPerfilUseCase
     {
-        List<Domain.Perfil.Perfil> Execute();
+        Task<ExecutionResult> Execute(string query);
     }
 }

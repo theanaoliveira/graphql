@@ -10,7 +10,17 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
         public UsuarioQuery(IUsersRepository usersRepository)
         {
             this.usersRepository = usersRepository;
+
             Field<ListGraphType<UsuarioType>>("users", resolve: context => this.usersRepository.GetUsers());
+
+            Field<UsuarioType>("user", 
+                arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id"}), 
+                resolve: context=> 
+                {
+                    var id = context.GetArgument<int>("id");
+                    return this.usersRepository.GetUsers(id);
+                }
+            );
         }
     }
 }

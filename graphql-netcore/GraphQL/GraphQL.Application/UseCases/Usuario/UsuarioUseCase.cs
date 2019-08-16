@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GraphQL.Application.UseCases.Usuario
 {
-    public class UsuarioUseCase: IUsuarioUseCase
+    public class UsuarioUseCase : IUsuarioUseCase
     {
         private readonly IUsersRepository usersRepository;
 
@@ -22,10 +22,9 @@ namespace GraphQL.Application.UseCases.Usuario
             {
                 _.Schema = schema;
                 _.Query = query;
-
             }).ConfigureAwait(false);
 
-            return result;            
+            return result;
         }
     }
 }

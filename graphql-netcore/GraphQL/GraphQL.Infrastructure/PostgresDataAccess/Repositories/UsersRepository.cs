@@ -27,5 +27,13 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
 
             return usuarios;
         }
+
+        public Usuario GetUsers(int id)
+        {
+            using (var context = new Context())
+            {
+                return mapper.Map<Usuario>(context.Usuario.Include(i => i.Perfil).Where(w=> w.Id == id).FirstOrDefault());
+            }
+        }
     }
 }

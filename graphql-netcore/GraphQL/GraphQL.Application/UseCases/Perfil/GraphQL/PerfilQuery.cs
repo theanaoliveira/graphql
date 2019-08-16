@@ -5,12 +5,21 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
 {
     public class PerfilQuery : ObjectGraphType, IGraphQueryMarker
     {
-        private readonly IPerfilUseCase perfilUseCase;
+        public readonly IProfileRepository profileRepository;
 
-        public PerfilQuery(IPerfilUseCase perfilUseCase)
+        public PerfilQuery(IProfileRepository profileRepository)
         {
-            this.perfilUseCase = perfilUseCase;
-            Field<ListGraphType<PerfilType>>("perfil", resolve: context => this.perfilUseCase.Execute());
+            this.profileRepository = profileRepository;
+
+            Field<ListGraphType<PerfilType>>("perfis", resolve: context => this.profileRepository.GetProfile());
+
+            Field<PerfilType>("perfil",
+                arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id" }),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<int>("id");
+                    return profileRepository.GetProfile(id);
+                });
         }
     }
 }
