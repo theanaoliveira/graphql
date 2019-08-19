@@ -21,7 +21,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
             modelBuilder.Entity("GraphQL.Infrastructure.PostgresDataAccess.Entities.Perfil", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
@@ -33,7 +33,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
             modelBuilder.Entity("GraphQL.Infrastructure.PostgresDataAccess.Entities.Usuario", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Age");
@@ -42,7 +42,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("PerfilId");
+                    b.Property<Guid?>("PerfilId");
 
                     b.Property<double>("Salario");
 

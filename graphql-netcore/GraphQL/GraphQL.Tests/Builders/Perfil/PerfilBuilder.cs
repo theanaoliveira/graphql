@@ -1,20 +1,22 @@
-﻿namespace GraphQL.Tests.Builders.Perfil
+﻿using System;
+
+namespace GraphQL.Tests.Builders.Perfil
 {
     public class PerfilBuilder
     {
-        public int Id;
+        public Guid Id;
         public string Name;
 
         public static PerfilBuilder New()
         {
             return new PerfilBuilder
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Name = "Comum"
             };
         }
 
-        public PerfilBuilder WithId(int id)
+        public PerfilBuilder WithId(Guid id)
         {
             Id = id;
             return this;

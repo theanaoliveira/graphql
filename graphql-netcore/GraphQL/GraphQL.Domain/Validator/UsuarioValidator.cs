@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System;
 
 namespace GraphQL.Domain.Validator
 {
@@ -6,12 +7,14 @@ namespace GraphQL.Domain.Validator
     {
         public UsuarioValidator()
         {
-            RuleFor(r => r.Id).NotNull().GreaterThan(0);
+            RuleFor(r => r.Id).NotNull().NotEqual(new Guid());
             RuleFor(r => r.Name).NotNull().NotEmpty();
             RuleFor(r => r.Email).NotNull().NotEmpty();
             RuleFor(r => r.Age).GreaterThan(0);
             RuleFor(r => r.Salario).GreaterThan(0);
-            RuleFor(r => r.Perfil).NotNull().SetValidator(new PerfilValidator());
+            RuleFor(r => r.Perfil).Null()
+                .When(w => w.Perfil != null)
+                .SetValidator(new PerfilValidator());
         }
     }
 }

@@ -2,6 +2,7 @@
 using GraphQL.Application.Repositories;
 using GraphQL.Domain.Usuario;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,7 +47,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             return usuarios;
         }
 
-        public Usuario GetUsers(int id)
+        public Usuario GetUsers(Guid id)
         {
             using (var context = new Context())
             {

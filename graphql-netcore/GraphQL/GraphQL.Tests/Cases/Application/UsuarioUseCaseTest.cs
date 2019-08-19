@@ -26,7 +26,7 @@ namespace GraphQL.Tests.Cases.Application
         [TestPriority(0)]
         public void ShouldAddNewUser()
         {
-            var user = UsuarioBuilder.New().WithId(new Random().Next(1000)).Build();
+            var user = UsuarioBuilder.New().WithId(Guid.NewGuid()).Build();
             var ret = usersRepository.Add(user);
 
             ret.Should().BeGreaterThan(0);

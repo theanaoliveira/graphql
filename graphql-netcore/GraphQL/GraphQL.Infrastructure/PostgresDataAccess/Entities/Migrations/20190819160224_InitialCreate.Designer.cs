@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20190814212134_InitialCreate")]
+    [Migration("20190819160224_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
             modelBuilder.Entity("GraphQL.Infrastructure.PostgresDataAccess.Entities.Perfil", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
@@ -35,7 +35,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
             modelBuilder.Entity("GraphQL.Infrastructure.PostgresDataAccess.Entities.Usuario", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Age");
@@ -44,7 +44,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("PerfilId");
+                    b.Property<Guid?>("PerfilId");
 
                     b.Property<double>("Salario");
 

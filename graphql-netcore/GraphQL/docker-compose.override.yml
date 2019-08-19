@@ -29,7 +29,6 @@ services:
       - graphql-network
 
 volumes:
-  pgservers:
   pgdata:
 
 networks:

@@ -21,8 +21,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
         {
             return new List<Perfil>()
             {
-                new Perfil(){ Id = 1, Name = "Administrador" },
-                new Perfil(){ Id = 2, Name = "Comum" },
+                new Perfil(){ Id = Guid.NewGuid(), Name = "Administrador" },
+                new Perfil(){ Id = Guid.NewGuid(), Name = "Comum" },
             };
         }
 
@@ -30,8 +30,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
         {
             return new List<Usuario>()
             {
-                new Usuario() { Id = 1, Name = "Ana Caroline", Age = 26, Email = "carolineana363@gmail.com", Salario = 1000, Perfil = perfis[0], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = true },
-                new Usuario() { Id = 2, Name = "João Silva", Age = 30, Email = "joaosilva@gmail.com", Salario = 1000, Perfil = perfis[1], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = false }
+                new Usuario() { Id = Guid.NewGuid(), Name = "Ana Caroline", Age = 26, Email = "carolineana363@gmail.com", Salario = 1000, Perfil = perfis[0], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = true },
+                new Usuario() { Id = Guid.NewGuid(), Name = "João Silva", Age = 30, Email = "joaosilva@gmail.com", Salario = 1000, Perfil = perfis[1], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = false }
             };
         }
     }

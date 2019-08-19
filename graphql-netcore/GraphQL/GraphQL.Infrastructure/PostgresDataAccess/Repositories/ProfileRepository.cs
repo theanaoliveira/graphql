@@ -47,11 +47,19 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             return perfis;
         }
 
-        public Perfil GetProfile(int id)
+        public Perfil GetProfile(Guid id)
         {
             using (var context = new Context())
             {
                 return mapper.Map<Perfil>(context.Perfil.Where(w => w.Id == id).FirstOrDefault());
+            }
+        }
+
+        public Perfil GetProfile(string name)
+        {
+            using (var context = new Context())
+            {
+                return mapper.Map<Perfil>(context.Perfil.Where(w => w.Name.ToUpper().Equals(name.ToUpper())).FirstOrDefault());
             }
         }
     }

@@ -2,6 +2,7 @@
 using GraphQL.Application.Repositories;
 using GraphQL.Tests.Builders.Perfil;
 using GraphQL.Tests.TestCaseOrdering;
+using System;
 using Xunit;
 using Xunit.Frameworks.Autofac;
 
@@ -12,6 +13,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
     public class PerfilRepositoryTest
     {
         public readonly IProfileRepository profileRepository;
+        public static Guid id = Guid.NewGuid();
 
         public PerfilRepositoryTest(IProfileRepository profileRepository)
         {
@@ -22,7 +24,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(0)]
         public void ShouldAddNewProfile()
         {
-            var user = PerfilBuilder.New().Build();
+            var user = PerfilBuilder.New().WithId(id).Build();
             var ret = profileRepository.Add(user);
 
             ret.Should().BeGreaterThan(0);
@@ -41,10 +43,10 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(1)]
         public void ShouldGetProfileById()
         {
-            var users = profileRepository.GetProfile(1);
+            var users = profileRepository.GetProfile(id);
 
             users.Should().NotBeNull();
-            users.Id.Should().Be(1);
+            users.Id.Should().Be(id);
         }
 
         [Fact]

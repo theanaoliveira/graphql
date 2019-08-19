@@ -9,6 +9,7 @@ namespace GraphQL.Webapi.GraphQL.Usuario
         public UsuarioSchema(IDependencyResolver resolver) : base(resolver)
         {           
             Query = resolver.Resolve<UsuarioQuery>();
+            Mutation = resolver.Resolve<UsuarioMutation>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GraphQL.Domain.Perfil;
+using System;
 using System.Collections.Generic;
 
 namespace GraphQL.Application.Repositories
@@ -7,7 +8,9 @@ namespace GraphQL.Application.Repositories
     {
         List<Perfil> GetProfile();
 
-        Perfil GetProfile(int id);
+        Perfil GetProfile(Guid id);
+
+        Perfil GetProfile(string name);
 
         int Add(Perfil perfil);
 

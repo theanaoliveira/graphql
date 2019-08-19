@@ -1,4 +1,5 @@
 ﻿using GraphQL.Domain.Usuario;
+using System;
 using System.Collections.Generic;
 
 namespace GraphQL.Application.Repositories
@@ -7,7 +8,7 @@ namespace GraphQL.Application.Repositories
     {
         List<Usuario> GetUsers();
 
-        Usuario GetUsers(int id);
+        Usuario GetUsers(Guid id);
 
         int Add(Usuario usuario);
 

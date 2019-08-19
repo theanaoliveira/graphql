@@ -1,11 +1,12 @@
 ﻿using GraphQL.Domain.Usuario;
 using GraphQL.Tests.Builders.Perfil;
+using System;
 
 namespace GraphQL.Tests.Builders.Usuario
 {
     public class UsuarioBuilder
     {
-        public int Id;
+        public Guid Id;
         public string Name;
         public string Email;
         public int Age;
@@ -18,7 +19,7 @@ namespace GraphQL.Tests.Builders.Usuario
         {
             return new UsuarioBuilder()
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Name = "Ana",
                 Email = "teste@graphql.com.br",
                 Age = 26,
@@ -29,7 +30,7 @@ namespace GraphQL.Tests.Builders.Usuario
             };
         }
 
-        public UsuarioBuilder WithId(int id)
+        public UsuarioBuilder WithId(Guid id)
         {
             Id = id;
             return this;
@@ -78,6 +79,6 @@ namespace GraphQL.Tests.Builders.Usuario
         }
 
         public Domain.Usuario.Usuario Build()
-            => new Domain.Usuario.Usuario(Id, Name, Email, Age, Vip, Salario, Perfil, Status);
+            => new Domain.Usuario.Usuario(Id, Name, Email, Age, Vip, Salario, Perfil.Id, Perfil, Status);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using System;
 
 namespace GraphQL.Domain
 {
     public abstract class Entity : IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public bool IsValid { get; private set; }
 

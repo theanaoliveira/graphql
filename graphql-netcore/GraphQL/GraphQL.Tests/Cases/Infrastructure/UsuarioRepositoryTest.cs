@@ -2,6 +2,7 @@
 using GraphQL.Application.Repositories;
 using GraphQL.Tests.Builders.Usuario;
 using GraphQL.Tests.TestCaseOrdering;
+using System;
 using Xunit;
 using Xunit.Frameworks.Autofac;
 
@@ -12,6 +13,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
     public class UsuarioRepositoryTest
     {
         public readonly IUsersRepository usersRepository;
+        public static Guid id = Guid.NewGuid();
 
         public UsuarioRepositoryTest(IUsersRepository usersRepository)
         {
@@ -22,7 +24,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(0)]
         public void ShouldAddNewUser()
         {
-            var user = UsuarioBuilder.New().Build();
+            var user = UsuarioBuilder.New().WithId(id).Build();
             var ret = usersRepository.Add(user);
 
             ret.Should().BeGreaterThan(0);
@@ -41,10 +43,10 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(1)]
         public void ShouldGetUserById()
         {
-            var users = usersRepository.GetUsers(1);
+            var users = usersRepository.GetUsers(id);
 
             users.Should().NotBeNull();
-            users.Id.Should().Be(1);
+            users.Id.Should().Be(id);
         }
 
         [Fact]

@@ -9,7 +9,7 @@ namespace GraphQL.Domain.Validator
     {
         public PerfilValidator()
         {
-            RuleFor(r => r.Id).NotNull().GreaterThan(0);
+            RuleFor(r => r.Id).NotNull().NotEqual(new Guid());
             RuleFor(r => r.Name).NotNull().NotEmpty();
         }
     }

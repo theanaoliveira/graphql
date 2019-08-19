@@ -8,15 +8,21 @@ namespace GraphQL.Application.UseCases.Usuario
     public class UsuarioUseCase : IUsuarioUseCase
     {
         private readonly IUsersRepository usersRepository;
+        private readonly IProfileRepository profileRepository;
 
-        public UsuarioUseCase(IUsersRepository usersRepository)
+        public UsuarioUseCase(IUsersRepository usersRepository, IProfileRepository profileRepository)
         {
             this.usersRepository = usersRepository;
+            this.profileRepository = profileRepository;
         }
 
         public async Task<ExecutionResult> Execute(string query)
         {
-            var schema = new Schema { Query = new UsuarioQuery(usersRepository) };
+            var schema = new Schema
+            {
+                Query = new UsuarioQuery(usersRepository),
+                Mutation = new UsuarioMutation(usersRepository, profileRepository)
+            };
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {

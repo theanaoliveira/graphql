@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PostgresDataAccess\Entities\Migrations\20190814212134_InitialCreate.cs" />
+    <Compile Remove="PostgresDataAccess\Entities\Migrations\20190814212134_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="GraphQL" Version="2.4.0" />

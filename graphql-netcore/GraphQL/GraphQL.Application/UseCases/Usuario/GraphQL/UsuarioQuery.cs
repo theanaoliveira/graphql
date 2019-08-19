@@ -1,5 +1,6 @@
 ﻿using GraphQL.Application.Repositories;
 using GraphQL.Types;
+using System;
 
 namespace GraphQL.Application.UseCases.Usuario.GraphQL
 {
@@ -17,7 +18,7 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
                 arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id"}), 
                 resolve: context=> 
                 {
-                    var id = context.GetArgument<int>("id");
+                    var id = context.GetArgument<Guid>("id");
                     return this.usersRepository.GetUsers(id);
                 }
             );

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
 {
@@ -15,8 +15,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
                 schema: "GraphQL",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -29,14 +28,13 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Entities.Migrations
                 schema: "GraphQL",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     Vip = table.Column<bool>(nullable: false),
                     Salario = table.Column<double>(nullable: false),
-                    PerfilId = table.Column<int>(nullable: true),
+                    PerfilId = table.Column<Guid>(nullable: true),
                     Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

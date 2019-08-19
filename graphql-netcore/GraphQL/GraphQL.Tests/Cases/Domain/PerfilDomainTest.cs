@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using GraphQL.Tests.Builders.Perfil;
+using System;
 using Xunit;
 
 namespace GraphQL.Tests.Cases.Domain
@@ -24,11 +25,10 @@ namespace GraphQL.Tests.Cases.Domain
             model.ValidationResult.Errors.Should().HaveCountGreaterThan(0);
         }
 
-        [Theory]
-        [InlineData(0)]
-        public void InvalidValuesShouldNotCreateWithId(int valor)
+        [Fact]
+        public void InvalidValuesShouldNotCreateWithId()
         {
-            var model = PerfilBuilder.New().WithId(valor).Build();
+            var model = PerfilBuilder.New().WithId(new Guid()).Build();
 
             model.IsValid.Should().BeFalse();
             model.ValidationResult.Errors.Should().HaveCountGreaterThan(0);

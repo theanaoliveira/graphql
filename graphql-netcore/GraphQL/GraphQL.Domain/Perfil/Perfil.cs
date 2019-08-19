@@ -1,4 +1,5 @@
 ﻿using GraphQL.Domain.Validator;
+using System;
 
 namespace GraphQL.Domain.Perfil
 {
@@ -6,7 +7,7 @@ namespace GraphQL.Domain.Perfil
     {
         public string Name { get; private set; }
 
-        public Perfil(int id, string name)
+        public Perfil(Guid id, string name)
         {
             Id = id;
             Name = name;
