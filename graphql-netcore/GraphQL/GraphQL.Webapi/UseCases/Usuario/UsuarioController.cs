@@ -17,14 +17,11 @@ namespace GraphQL.Webapi.UseCases.Usuario
         }
 
         [HttpPost]
-        [Route("GetUsers")]
+        [Route("Users")]
         public async Task<IActionResult> GetUsers([FromBody] GraphQLQuery query)
         {
             var result = await usuarioUseCase.Execute(query.Query);
-
-
-            var teste = "query { user(id: \"2f79f347-e6a2-4a42-b033-b0bca95ebc3d\") { id name email vip perfil {id name} } }";
-
+            
             if (result.Errors?.Count > 0)
             {
                 return BadRequest();
