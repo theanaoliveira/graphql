@@ -6,7 +6,6 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
     {
         public PerfilInput()
         {
-            Field<NonNullGraphType<IdGraphType>>("id");
             Field<NonNullGraphType<StringGraphType>>("name");
         }
     }

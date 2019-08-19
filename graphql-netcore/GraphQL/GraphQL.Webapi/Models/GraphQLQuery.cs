@@ -2,6 +2,6 @@
 {
     public class GraphQLQuery
     {
-        public string Query { get; set; }
+        public string Input { get; set; }
     }
 }

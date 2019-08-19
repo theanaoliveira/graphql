@@ -20,7 +20,7 @@ namespace GraphQL.Webapi.UseCases.Usuario
         [Route("Users")]
         public async Task<IActionResult> GetUsers([FromBody] GraphQLQuery query)
         {
-            var result = await usuarioUseCase.Execute(query.Query);
+            var result = await usuarioUseCase.Execute(query.Input);
             
             if (result.Errors?.Count > 0)
             {

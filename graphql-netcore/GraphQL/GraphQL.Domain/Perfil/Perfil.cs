@@ -14,5 +14,9 @@ namespace GraphQL.Domain.Perfil
 
             Validate(this, new PerfilValidator());
         }
+
+        public Perfil()
+        {
+        }
     }
 }

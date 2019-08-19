@@ -51,7 +51,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             using (var context = new Context())
             {
-                return mapper.Map<Usuario>(context.Usuario.Include(i => i.Perfil).Where(w => w.Id == id).FirstOrDefault());
+                return mapper.Map<Usuario>(context.Usuario.Include(i => i.Perfil).FirstOrDefault(w => w.Id == id));
             }
         }
     }

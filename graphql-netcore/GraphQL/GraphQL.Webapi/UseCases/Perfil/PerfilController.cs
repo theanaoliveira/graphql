@@ -17,10 +17,10 @@ namespace GraphQL.Webapi.UseCases.Perfil
         }
 
         [HttpPost]
-        [Route("GetProfiles")]
+        [Route("Profiles")]
         public async Task<IActionResult> GetProfiles([FromBody] GraphQLQuery query)
         {
-            var result = await perfilUseCase.Execute(query.Query);
+            var result = await perfilUseCase.Execute(query.Input);
 
             if (result.Errors?.Count > 0)
             {
