@@ -16,7 +16,11 @@ namespace GraphQL.Application.UseCases.Perfil
 
         public async Task<ExecutionResult> Execute(string query)
         {
-            var schema = new Schema { Query = new PerfilQuery(profileRepository) };
+            var schema = new Schema
+            {
+                Query = new PerfilQuery(profileRepository),
+                Mutation = new PerfilMutation(profileRepository)
+            };
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {

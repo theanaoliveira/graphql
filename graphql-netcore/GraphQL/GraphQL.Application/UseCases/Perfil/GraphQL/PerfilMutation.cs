@@ -12,19 +12,44 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
         {
             this.profileRepository = profileRepository;
 
+            Profiles();
+        }
+
+        public void Profiles()
+        {
             Field<PerfilType>("createProfile",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<PerfilInput>> { Name = "perfil" }),
-                resolve: context => {
-                    var perfil = context.GetArgument<Domain.Perfil.Perfil>("perfil");
-                    var profile = new Domain.Perfil.Perfil(Guid.NewGuid(), perfil.Name);
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "name" }),
+                resolve: context => AddProfile(context));
 
-                    if (profile.IsValid)
-                        this.profileRepository.Add(profile);
-                    else
-                        return new ArgumentException(string.Join(",", profile.ValidationResult.Errors));
+            Field<PerfilType>("deleteProfile",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }),
+                resolve: context => DeleteProfile(context));
+        }
 
-                    return profile;
-                });
+        public object AddProfile(ResolveFieldContext<object> context)
+        {
+            var name = context.GetArgument<string>("name");
+            var profile = new Domain.Perfil.Perfil(Guid.NewGuid(), name);
+
+            if (profile.IsValid)
+                this.profileRepository.Add(profile);
+            else
+                return new ArgumentException(string.Join(",", profile.ValidationResult.Errors));
+
+            return profile;
+        }
+
+        public object DeleteProfile(ResolveFieldContext<object> context)
+        {
+            var id = context.GetArgument<Guid>("id");
+            var perfil = this.profileRepository.GetProfile(id);
+
+            if (perfil != null)
+                this.profileRepository.Delete(perfil);
+            else
+                return new ArgumentException($"Perfil: {id} não encontrado.");
+
+            return perfil;
         }
     }
 }
