@@ -79,6 +79,8 @@ namespace GraphQL.Webapi
             builder.RegisterModule<InfrastructureModule>();
             builder.RegisterModule<WebApiModule>();
 
+            InfrastructureModule.RegisterInContainer((type, instance) => { services.AddSingleton(type, instance); });
+
             builder.Populate(services);
 
             var container = builder.Build();

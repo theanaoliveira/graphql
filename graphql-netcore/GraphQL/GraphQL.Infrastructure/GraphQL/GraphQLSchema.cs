@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL.Infrastructure.PostgresDataAccess.Repositories;
+using GraphQL.Types;
 
 namespace GraphQL.Infrastructure.GraphQL
 {
@@ -6,8 +7,9 @@ namespace GraphQL.Infrastructure.GraphQL
     {
         public GraphQLSchema(IDependencyResolver resolver) : base(resolver)
         {
-            Query = resolver.Resolve<GraphQLQuery>();
-            Mutation = resolver.Resolve<GraphQLMutation>();
+            //Query = resolver.Resolve<GraphQLQuery>();
+            //Mutation = resolver.Resolve<GraphQLMutation>();
+            Query = resolver.Resolve<Query>();
         }
     }
 }

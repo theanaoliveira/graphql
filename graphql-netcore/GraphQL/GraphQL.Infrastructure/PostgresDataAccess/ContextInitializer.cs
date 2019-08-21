@@ -1,4 +1,5 @@
-﻿using GraphQL.Infrastructure.PostgresDataAccess.Entities;
+﻿using GraphQL.Domain.Usuario;
+using GraphQL.Infrastructure.PostgresDataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,21 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
             }
         }
 
-        static List<Perfil> GetPerfis()
+        static List<Domain.Perfil.Perfil> GetPerfis()
         {
-            return new List<Perfil>()
+            return new List<Domain.Perfil.Perfil>()
             {
-                new Perfil(){ Id = Guid.NewGuid(), Name = "Administrador" },
-                new Perfil(){ Id = Guid.NewGuid(), Name = "Comum" },
+                new Domain.Perfil.Perfil(Guid.NewGuid(), "Administrador"),
+                new Domain.Perfil.Perfil(Guid.NewGuid(), "Comum")
             };
         }
 
-        static List<Usuario> GetUsuario(List<Perfil> perfis)
+        static List<Domain.Usuario.Usuario> GetUsuario(List<Domain.Perfil.Perfil> perfis)
         {
-            return new List<Usuario>()
+            return new List<Domain.Usuario.Usuario>()
             {
-                new Usuario() { Id = Guid.NewGuid(), Name = "Ana Caroline", Age = 26, Email = "carolineana363@gmail.com", Salario = 1000, Perfil = perfis[0], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = true },
-                new Usuario() { Id = Guid.NewGuid(), Name = "João Silva", Age = 30, Email = "joaosilva@gmail.com", Salario = 1000, Perfil = perfis[1], Status = Domain.Usuario.UsuarioStatus.ATIVO, Vip = false }
+                new Domain.Usuario.Usuario(Guid.NewGuid(), "Ana Caroline", "anacaroline@graphql.com", 26, true,  1000, perfis[0].Id, perfis[0], UsuarioStatus.ATIVO),
+                new Domain.Usuario.Usuario(Guid.NewGuid(), "João Silva", "joaosilva@graphql.com", 26, false, 1000,  perfis[1].Id, perfis[0], UsuarioStatus.ATIVO)
             };
         }
     }

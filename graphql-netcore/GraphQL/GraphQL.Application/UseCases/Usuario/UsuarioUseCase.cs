@@ -18,17 +18,20 @@ namespace GraphQL.Application.UseCases.Usuario
 
         public async Task<ExecutionResult> Execute(string query)
         {
-            var schema = new Schema
-            {
-                Query = new UsuarioQuery(usersRepository),
-                Mutation = new UsuarioMutation(usersRepository, profileRepository)
-            };
+            //var schema = new Schema
+            //{
+            //    Query = new UsuarioQuery(usersRepository),
+            //    Mutation = new UsuarioMutation(usersRepository, profileRepository)
+            //};
 
-            var result = await new DocumentExecuter().ExecuteAsync(_ =>
-            {
-                _.Schema = schema;
-                _.Query = query;
-            }).ConfigureAwait(false);
+            //var result = await new DocumentExecuter().ExecuteAsync(_ =>
+            //{
+            //    _.Schema = usersRepository.Test(query);
+            //    _.Query = query;
+
+            //}).ConfigureAwait(false);
+
+            var result = await usersRepository.Test(query);
 
             return result;
         }

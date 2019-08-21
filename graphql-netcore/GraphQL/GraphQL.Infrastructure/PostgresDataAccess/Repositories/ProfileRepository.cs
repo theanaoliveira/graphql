@@ -4,7 +4,6 @@ using GraphQL.Domain.Perfil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
 {
@@ -21,7 +20,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             using (var context = new Context())
             {
-                context.Perfil.Add(mapper.Map<Entities.Perfil>(perfil));
+                //context.Perfil.Add(mapper.Map<Entities.Perfil>(perfil));
                 return context.SaveChanges();
             }
         }
@@ -30,7 +29,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             using (var context = new Context())
             {
-                context.Perfil.Remove(mapper.Map<Entities.Perfil>(perfil));
+                //context.Perfil.Remove(mapper.Map<Entities.Perfil>(perfil));
                 return context.SaveChanges();
             }
         }
