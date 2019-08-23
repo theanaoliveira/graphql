@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using GraphQL.Infrastructure.GraphQL;
+using GraphQL.Types;
 
 namespace GraphQL.Infrastructure.Modules
 {
@@ -11,8 +12,9 @@ namespace GraphQL.Infrastructure.Modules
                .AsImplementedInterfaces()
                .AsSelf().InstancePerLifetimeScope();
 
-            builder.RegisterType<GraphQLSchema>().InstancePerLifetimeScope();
+            builder.RegisterType<GraphQLSchema>().As<ISchema>().InstancePerLifetimeScope();
             builder.RegisterType<GraphQLQuery>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<GraphQLMutation>().AsSelf().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

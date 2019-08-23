@@ -45,7 +45,7 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
         private object DeleteUser(ResolveFieldContext<object> context)
         {
             var id = context.GetArgument<Guid>("id");
-            var usuario = usersRepository.GetUsers(id);
+            var usuario = usersRepository.GetUsers(id).As<Domain.Usuario.Usuario>();
 
             if (usuario != null)
                 usersRepository.Delete(usuario);

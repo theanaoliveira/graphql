@@ -7,21 +7,15 @@ namespace GraphQL.Application.UseCases.Perfil
 {
     public class PerfilUseCase : IPerfilUseCase
     {
-        public readonly IProfileRepository profileRepository;
+        public readonly ISchema schema;
 
-        public PerfilUseCase(IProfileRepository profileRepository)
+        public PerfilUseCase(ISchema schema)
         {
-            this.profileRepository = profileRepository;
+            this.schema = schema;
         }
 
         public async Task<ExecutionResult> Execute(string query)
         {
-            var schema = new Schema
-            {
-                Query = new PerfilQuery(profileRepository),
-                Mutation = new PerfilMutation(profileRepository)
-            };
-
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {
                 _.Schema = schema;

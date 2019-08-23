@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using GraphQL.Application.Repositories;
+using GraphQL.Domain.Usuario;
 using GraphQL.Tests.Builders.Usuario;
 using GraphQL.Tests.TestCaseOrdering;
 using System;
@@ -46,7 +47,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
             var users = usersRepository.GetUsers(id);
 
             users.Should().NotBeNull();
-            users.Id.Should().Be(id);
+            users.As<Usuario>().Id.Should().Be(id);
         }
 
         [Fact]
