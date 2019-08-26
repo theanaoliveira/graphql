@@ -1,4 +1,5 @@
-﻿using GraphQL.Infrastructure.PostgresDataAccess.Entities;
+﻿using GraphQL.Domain.Perfil;
+using GraphQL.Domain.Usuario;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

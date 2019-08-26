@@ -12,9 +12,7 @@ namespace GraphQL.Domain.Validator
             RuleFor(r => r.Email).NotNull().NotEmpty();
             RuleFor(r => r.Age).GreaterThan(0);
             RuleFor(r => r.Salario).GreaterThan(0);
-            RuleFor(r => r.Perfil).Null()
-                .When(w => w.Perfil != null)
-                .SetValidator(new PerfilValidator());
+            RuleFor(r => r.Perfil).SetValidator(new PerfilValidator());
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using GraphQL.Domain.Usuario;
-using GraphQL.Infrastructure.PostgresDataAccess.Entities;
+﻿using GraphQL.Domain.Perfil;
+using GraphQL.Domain.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess
 {
@@ -22,8 +21,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
         {
             return new List<Domain.Perfil.Perfil>()
             {
-                new Domain.Perfil.Perfil(Guid.NewGuid(), "Administrador"),
-                new Domain.Perfil.Perfil(Guid.NewGuid(), "Comum")
+                new Perfil(Guid.NewGuid(), "Administrador"),
+                new Perfil(Guid.NewGuid(), "Comum"),
             };
         }
 
@@ -31,8 +30,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
         {
             return new List<Domain.Usuario.Usuario>()
             {
-                new Domain.Usuario.Usuario(Guid.NewGuid(), "Ana Caroline", "anacaroline@graphql.com", 26, true,  1000, perfis[0].Id, perfis[0], UsuarioStatus.ATIVO),
-                new Domain.Usuario.Usuario(Guid.NewGuid(), "João Silva", "joaosilva@graphql.com", 26, false, 1000,  perfis[1].Id, perfis[0], UsuarioStatus.ATIVO)
+                new Usuario(Guid.NewGuid(), "Ana Caroline", "anacaroline@graphql.com", 26, true, 1000, perfis[0].Id, perfis[0], UsuarioStatus.ATIVO),
+                new Usuario(Guid.NewGuid(), "João Silva", "joaosilva@graphql.com", 30, false, 1000, perfis[1].Id, perfis[1], UsuarioStatus.ATIVO),
             };
         }
     }

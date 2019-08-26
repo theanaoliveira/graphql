@@ -20,7 +20,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             using (var context = new Context())
             {
-                //context.Perfil.Add(mapper.Map<Entities.Perfil>(perfil));
+                context.Perfil.Add(perfil);
                 return context.SaveChanges();
             }
         }
@@ -29,7 +29,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             using (var context = new Context())
             {
-                //context.Perfil.Remove(mapper.Map<Entities.Perfil>(perfil));
+                context.Perfil.Remove(perfil);
                 return context.SaveChanges();
             }
         }

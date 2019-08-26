@@ -33,7 +33,7 @@ namespace GraphQL.Tests.Cases.Application
         }
 
         [Theory]
-        [InlineData("{ users(take: 1) { id name email } }")]
+        [InlineData("{ users { id name email } }")]
         [TestPriority(1)]
         public void ShouldExecuteUseCase(string query)
         {
