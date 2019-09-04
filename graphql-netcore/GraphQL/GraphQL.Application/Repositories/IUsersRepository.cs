@@ -1,9 +1,9 @@
 ﻿using GraphQL.Domain.Usuario;
-using GraphQL.Types;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Collections.Generic;
 
 namespace GraphQL.Application.Repositories
 {
@@ -15,7 +15,7 @@ namespace GraphQL.Application.Repositories
 
         IQueryable<Usuario> GetUsers();
 
-        Usuario GetUsers(Guid id);
+        List<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition);
 
         Task<ExecutionResult> Test(string query);
     }

@@ -44,15 +44,16 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
 
         private object DeleteUser(ResolveFieldContext<object> context)
         {
-            var id = context.GetArgument<Guid>("id");
-            var usuario = usersRepository.GetUsers(id).As<Domain.Usuario.Usuario>();
+            //var id = context.GetArgument<Guid>("id");
+            //var usuario = usersRepository.GetUsers(id).As<Domain.Usuario.Usuario>();
 
-            if (usuario != null)
-                usersRepository.Delete(usuario);
-            else
-                return new ArgumentException($"Usuario: {id} não encontrado.");
+            //if (usuario != null)
+            //    usersRepository.Delete(usuario);
+            //else
+            //    return new ArgumentException($"Usuario: {id} não encontrado.");
 
-            return usuario;
+            //return usuario;
+            return null;
         }
     }
 }

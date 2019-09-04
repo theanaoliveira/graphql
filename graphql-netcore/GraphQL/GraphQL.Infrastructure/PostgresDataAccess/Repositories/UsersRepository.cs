@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
 using GraphQL.Application.Repositories;
 using GraphQL.Domain.Usuario;
-using GraphQL.EntityFramework;
-using GraphQL.Infrastructure.GraphQL;
-using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
@@ -42,10 +39,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             }
         }
 
-        public Usuario GetUsers(Guid id)
-            => context.Usuario
-                .Include(i => i.Perfil)
-                .FirstOrDefault(w => w.Id.Equals(id));
+        public List<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition)
+            => context.Usuario.Where(condition).ToList();
 
         public IQueryable<Usuario> GetUsers()
             => context.Usuario.Include(i => i.Perfil);
@@ -59,5 +54,7 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

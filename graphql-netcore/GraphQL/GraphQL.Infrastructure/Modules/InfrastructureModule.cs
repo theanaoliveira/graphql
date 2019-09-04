@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using GraphQL.EntityFramework;
 using GraphQL.Infrastructure.GraphQL;
 using GraphQL.Types;
 
