@@ -13,10 +13,8 @@ namespace GraphQL.Application.Repositories
 
         int Delete(Usuario usuario);
 
-        IQueryable<Usuario> GetUsers();
+        List<Usuario> GetUsers();
 
         List<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition);
-
-        Task<ExecutionResult> Test(string query);
     }
 }
