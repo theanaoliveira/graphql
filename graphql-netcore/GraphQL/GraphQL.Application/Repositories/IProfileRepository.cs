@@ -1,6 +1,7 @@
 ﻿using GraphQL.Domain.Perfil;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace GraphQL.Application.Repositories
 {
@@ -8,9 +9,7 @@ namespace GraphQL.Application.Repositories
     {
         List<Perfil> GetProfile();
 
-        Perfil GetProfile(Guid id);
-
-        Perfil GetProfile(string name);
+        List<Perfil> GetProfile(Expression<Func<Perfil, bool>> condition);
 
         int Add(Perfil perfil);
 

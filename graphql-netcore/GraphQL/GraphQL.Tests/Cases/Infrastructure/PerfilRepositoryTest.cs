@@ -1,5 +1,8 @@
 ﻿using FluentAssertions;
 using GraphQL.Application.Repositories;
+using GraphQL.Application.UseCases.Expressions;
+using GraphQL.Domain.Perfil;
+using GraphQL.Tests.Builders.Expressions;
 using GraphQL.Tests.Builders.Perfil;
 using GraphQL.Tests.TestCaseOrdering;
 using System;
@@ -13,11 +16,13 @@ namespace GraphQL.Tests.Cases.Infrastructure
     public class PerfilRepositoryTest
     {
         public readonly IProfileRepository profileRepository;
+        public readonly IMakeExpression makeExpression;
         public static Guid id = Guid.NewGuid();
 
-        public PerfilRepositoryTest(IProfileRepository profileRepository)
+        public PerfilRepositoryTest(IProfileRepository profileRepository, IMakeExpression makeExpression)
         {
             this.profileRepository = profileRepository;
+            this.makeExpression = makeExpression;
         }
 
         [Fact]
@@ -43,17 +48,18 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(1)]
         public void ShouldGetProfileById()
         {
-            var users = profileRepository.GetProfile(id);
+            var where = WhereExpressionBuilder.New().WithField("id").WithValue(id.ToString()).Build();
+            var perfil = profileRepository.GetProfile(makeExpression.GetExpression<Perfil>(where));
 
-            users.Should().NotBeNull();
-            users.Id.Should().Be(id);
+            perfil.Should().NotBeNull();
+            perfil[0].Id.Should().Be(id);
         }
 
         [Fact]
         [TestPriority(2)]
         public void ShouldDeleteProfile()
         {
-            var ret = profileRepository.Delete(PerfilBuilder.New().Build());
+            var ret = profileRepository.Delete(PerfilBuilder.New().WithId(id).Build());
             ret.Should().BeGreaterThan(0);
         }
     }
