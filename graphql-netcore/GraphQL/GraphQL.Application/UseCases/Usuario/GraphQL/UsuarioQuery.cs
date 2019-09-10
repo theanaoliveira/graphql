@@ -1,4 +1,6 @@
 ﻿using GraphQL.Application.Repositories;
+using GraphQL.Application.UseCases.Expressions;
+using GraphQL.Application.UseCases.Expressions.Where;
 using GraphQL.Types;
 using System;
 
@@ -18,10 +20,12 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
                 arguments: new QueryArguments(new QueryArgument<IdGraphType> { Name = "id"}), 
                 resolve: context=> 
                 {
-                    var id = context.GetArgument<Guid>("id");
-                    return this.usersRepository.GetUsers(id);
-                }
-            );
+                    var arguments = context.GetArgument<WhereExpression>("where");
+                    
+                    return (arguments != null) ?
+                        this.usersRepository.GetUsers(this.makeExpression.GetExpression<Domain.Usuario.Usuario>(arguments)) :
+                        this.usersRepository.GetUsers();
+                });
         }
     }
 }

@@ -8,17 +8,8 @@ using System.Linq;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
 {
-    public class UsersRepository : IUsersRepository, IDisposable
+    public class UsersRepository : IUsersRepository
     {
-        public readonly IMapper mapper;
-        public readonly Context context;
-
-        public UsersRepository(IMapper mapper, Context context)
-        {
-            this.mapper = mapper;
-            this.context = context;
-        }
-
         public int Add(Usuario usuario)
         {
             using (var context = new Context())
@@ -37,17 +28,28 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             }
         }
 
-        public Usuario GetUsers(Guid id)
-            => context.Usuario
-                .Include(i => i.Perfil)
-                .FirstOrDefault(w => w.Id.Equals(id));
-
-        public IQueryable<Usuario> GetUsers()
-            => context.Usuario.Include(i => i.Perfil);
-
-        public void Dispose()
+        public IQueryable<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition)
         {
-            context.Dispose();
+            IQueryable<Usuario> user;
+            
+            using (var context = new Context())
+            {
+                user = context.Usuario.Include(i => i.Perfil).Where(condition);
+            }
+
+            return user;
+        }
+        
+        public IQueryable<Usuario> GetUsers()
+        {
+            IQueryable<Usuario> user;
+
+            using (var context = new Context())
+            {
+                user = context.Usuario.Include(i => i.Perfil);
+            }
+
+            return user;
         }
     }
 }
