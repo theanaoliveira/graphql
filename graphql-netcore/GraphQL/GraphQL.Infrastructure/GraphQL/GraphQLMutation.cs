@@ -1,9 +1,7 @@
 ﻿using GraphQL.Application.Repositories;
 using GraphQL.Types;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GraphQL.Infrastructure.GraphQL
 {

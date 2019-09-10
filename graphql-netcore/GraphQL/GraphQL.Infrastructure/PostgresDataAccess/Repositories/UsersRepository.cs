@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
 {
@@ -28,25 +29,25 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             }
         }
 
-        public IQueryable<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition)
+        public List<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition)
         {
-            IQueryable<Usuario> user;
+            List<Usuario> user;
             
             using (var context = new Context())
             {
-                user = context.Usuario.Include(i => i.Perfil).Where(condition);
+                user = context.Usuario.Include(i => i.Perfil).Where(condition).ToList();
             }
 
             return user;
         }
-        
-        public IQueryable<Usuario> GetUsers()
+
+        public List<Usuario> GetUsers()
         {
-            IQueryable<Usuario> user;
+            List<Usuario> user;
 
             using (var context = new Context())
             {
-                user = context.Usuario.Include(i => i.Perfil);
+                user = context.Usuario.Include(i => i.Perfil).ToList();
             }
 
             return user;

@@ -1,4 +1,6 @@
 ﻿using GraphQL.Application.Repositories;
+using GraphQL.Application.UseCases.Expressions;
+using GraphQL.Application.UseCases.Expressions.Where;
 using GraphQL.Types;
 using System;
 
@@ -7,10 +9,12 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
     public class PerfilMutation : ObjectGraphType, IGraphMutationMarker
     {
         private readonly IProfileRepository profileRepository;
+        private readonly IMakeExpression makeExpression;
 
-        public PerfilMutation(IProfileRepository profileRepository)
+        public PerfilMutation(IProfileRepository profileRepository, IMakeExpression makeExpression)
         {
             this.profileRepository = profileRepository;
+            this.makeExpression = makeExpression;
 
             Profiles();
         }
@@ -22,7 +26,7 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
                 resolve: context => AddProfile(context));
 
             Field<PerfilType>("deleteProfile",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }),
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<WhereExpressionGraph>> { Name = "where" }),
                 resolve: context => DeleteProfile(context));
         }
 
@@ -41,13 +45,13 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
 
         public object DeleteProfile(ResolveFieldContext<object> context)
         {
-            var id = context.GetArgument<Guid>("id");
-            var perfil = this.profileRepository.GetProfile(id);
+            var arguments = context.GetArgument<WhereExpression>("where");
+            var perfil = this.profileRepository.GetProfile(this.makeExpression.GetExpression<Domain.Perfil.Perfil>(arguments));
 
             if (perfil != null)
-                this.profileRepository.Delete(perfil);
+                this.profileRepository.Delete(perfil[0]);
             else
-                return new ArgumentException($"Perfil: {id} não encontrado.");
+                return new ArgumentException($"Perfil não encontrado.");
 
             return perfil;
         }

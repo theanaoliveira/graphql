@@ -1,7 +1,7 @@
 ﻿using GraphQL.Domain.Usuario;
 using System;
+using System.Linq.Expressions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GraphQL.Application.Repositories
 {
@@ -11,8 +11,8 @@ namespace GraphQL.Application.Repositories
 
         int Delete(Usuario usuario);
 
-        IQueryable<Usuario> GetUsers();
+        List<Usuario> GetUsers(Expression<Func<Usuario, bool>> condition);
 
-        Usuario GetUsers(Guid id);
+        List<Usuario> GetUsers();
     }
 }

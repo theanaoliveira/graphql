@@ -6,7 +6,7 @@ namespace GraphQL.Application.UseCases.Expressions
 {
     public class MakeExpression : IMakeExpression
     {
-        public readonly IProperties properties;
+        private readonly IProperties properties;
 
         public MakeExpression(IProperties properties)
         {

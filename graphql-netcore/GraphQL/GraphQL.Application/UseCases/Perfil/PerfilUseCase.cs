@@ -1,26 +1,20 @@
 ﻿using GraphQL.Application.Repositories;
-using GraphQL.Application.UseCases.Perfil.GraphQL;
-using GraphQL.Types;
 using System.Threading.Tasks;
 
 namespace GraphQL.Application.UseCases.Perfil
 {
     public class PerfilUseCase : IPerfilUseCase
     {
-        public readonly ISchema schema;
+        public readonly IGraphQLRepository graphQLRepository;
 
-        public PerfilUseCase(ISchema schema)
+        public PerfilUseCase(IGraphQLRepository graphQLRepository)
         {
-            this.schema = schema;
+            this.graphQLRepository = graphQLRepository;
         }
 
         public async Task<ExecutionResult> Execute(string query)
         {
-            var result = await new DocumentExecuter().ExecuteAsync(_ =>
-            {
-                _.Schema = schema;
-                _.Query = query;
-            }).ConfigureAwait(false);
+            var result = await graphQLRepository.Execute(query);
 
             return result;
         }

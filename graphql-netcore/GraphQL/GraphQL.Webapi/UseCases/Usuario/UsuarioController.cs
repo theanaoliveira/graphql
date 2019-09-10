@@ -1,4 +1,4 @@
-﻿using GraphQL.Application.UseCases.Usuario;
+﻿using GraphQL.Application.Repositories;
 using GraphQL.Webapi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -9,18 +9,18 @@ namespace GraphQL.Webapi.UseCases.Usuario
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioUseCase usuarioUseCase;
+        private readonly IGraphQLRepository graphQLRepository;
 
-        public UsuarioController(IUsuarioUseCase usuarioUseCase)
+        public UsuarioController(IGraphQLRepository graphQLRepository)
         {
-            this.usuarioUseCase = usuarioUseCase;
+            this.graphQLRepository = graphQLRepository;
         }
 
         [HttpPost]
         [Route("Users")]
         public async Task<IActionResult> GetUsers([FromBody] GraphQLQuery query)
         {
-            var result = await usuarioUseCase.Execute(query.Input);
+            var result = await graphQLRepository.Execute(query.Input);
             
             if (result.Errors?.Count > 0)
             {

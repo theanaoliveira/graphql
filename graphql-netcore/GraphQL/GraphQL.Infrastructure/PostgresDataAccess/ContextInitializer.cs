@@ -17,18 +17,18 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
             }
         }
 
-        static List<Perfil> GetPerfis()
+        static List<Domain.Perfil.Perfil> GetPerfis()
         {
-            return new List<Perfil>()
+            return new List<Domain.Perfil.Perfil>()
             {
                 new Perfil(Guid.NewGuid(), "Administrador"),
                 new Perfil(Guid.NewGuid(), "Comum"),
             };
         }
 
-        static List<Usuario> GetUsuario(List<Perfil> perfis)
+        static List<Domain.Usuario.Usuario> GetUsuario(List<Domain.Perfil.Perfil> perfis)
         {
-            return new List<Usuario>()
+            return new List<Domain.Usuario.Usuario>()
             {
                 new Usuario(Guid.NewGuid(), "Ana Caroline", "anacaroline@graphql.com", 26, true, 1000, perfis[0].Id, perfis[0], UsuarioStatus.ATIVO),
                 new Usuario(Guid.NewGuid(), "João Silva", "joaosilva@graphql.com", 30, false, 1000, perfis[1].Id, perfis[1], UsuarioStatus.ATIVO),

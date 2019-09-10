@@ -13,7 +13,6 @@
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="GraphQL" Version="2.4.0" />
-    <PackageReference Include="GraphQL.EntityFramework" Version="6.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.6" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
   </ItemGroup>
@@ -21,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\GraphQL.Application\GraphQL.Application.csproj" />
     <ProjectReference Include="..\GraphQL.Domain\GraphQL.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GraphQL\Predicates\" />
   </ItemGroup>
 
 </Project>

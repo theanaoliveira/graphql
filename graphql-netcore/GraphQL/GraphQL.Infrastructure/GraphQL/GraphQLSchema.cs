@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL.Infrastructure.PostgresDataAccess.Repositories;
+using GraphQL.Types;
 
 namespace GraphQL.Infrastructure.GraphQL
 {
