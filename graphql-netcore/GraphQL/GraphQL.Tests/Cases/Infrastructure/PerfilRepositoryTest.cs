@@ -43,10 +43,10 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(1)]
         public void ShouldGetProfileById()
         {
-            var users = profileRepository.GetProfile(id);
+            var users = profileRepository.GetProfile(u=> u.Id == id);
 
             users.Should().NotBeNull();
-            users.Id.Should().Be(id);
+            users[0].Id.Should().Be(id);
         }
 
         [Fact]

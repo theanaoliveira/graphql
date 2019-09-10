@@ -1,5 +1,6 @@
 ﻿using GraphQL.Application.Repositories;
 using GraphQL.Application.UseCases.Expressions;
+using GraphQL.Application.UseCases.Expressions.Where;
 using GraphQL.Types;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
         {
             this.makeExpression = makeExpression;
             this.usersRepository = usersRepository;
+            this.makeExpression = makeExpression;
 
             Field<ListGraphType<UsuarioType>>("users",
                 arguments: new QueryArguments(new QueryArgument<WhereExpressionGraph> { Name = "where" }),

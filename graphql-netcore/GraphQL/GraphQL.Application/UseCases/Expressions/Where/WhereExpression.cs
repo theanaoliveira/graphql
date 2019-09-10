@@ -1,4 +1,4 @@
-﻿namespace GraphQL.Application.UseCases.Expressions
+﻿namespace GraphQL.Application.UseCases.Expressions.Where
 {
     public class WhereExpression
     {

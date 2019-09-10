@@ -4,6 +4,7 @@ using GraphQL.Domain.Perfil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
 {
@@ -46,19 +47,11 @@ namespace GraphQL.Infrastructure.PostgresDataAccess.Repositories
             return perfis;
         }
 
-        public Perfil GetProfile(Guid id)
+        public List<Perfil> GetProfile(Expression<Func<Perfil, bool>> condition)
         {
             using (var context = new Context())
             {
-                return mapper.Map<Perfil>(context.Perfil.Where(w => w.Id == id).FirstOrDefault());
-            }
-        }
-
-        public Perfil GetProfile(string name)
-        {
-            using (var context = new Context())
-            {
-                return mapper.Map<Perfil>(context.Perfil.Where(w => w.Name.ToUpper().Equals(name.ToUpper())).FirstOrDefault());
+                return context.Perfil.Where(condition).ToList();
             }
         }
     }

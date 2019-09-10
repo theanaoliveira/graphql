@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphQL.Application.UseCases.Expressions.Where;
+using System;
 using System.Linq.Expressions;
 
 namespace GraphQL.Application.UseCases.Expressions

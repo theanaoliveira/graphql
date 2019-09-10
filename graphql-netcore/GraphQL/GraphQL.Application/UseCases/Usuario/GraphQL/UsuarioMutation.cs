@@ -1,4 +1,6 @@
 ﻿using GraphQL.Application.Repositories;
+using GraphQL.Application.UseCases.Expressions;
+using GraphQL.Application.UseCases.Expressions.Where;
 using GraphQL.Types;
 using System;
 
@@ -8,11 +10,13 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
     {
         private readonly IUsersRepository usersRepository;
         private readonly IProfileRepository profileRepository;
+        private readonly IMakeExpression makeExpression;
 
-        public UsuarioMutation(IUsersRepository usersRepository, IProfileRepository profileRepository)
+        public UsuarioMutation(IUsersRepository usersRepository, IProfileRepository profileRepository, IMakeExpression makeExpression)
         {
             this.usersRepository = usersRepository;
             this.profileRepository = profileRepository;
+            this.makeExpression = makeExpression;
 
             Users();
         }
@@ -24,15 +28,15 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
                 resolve: context => AddUser(context));
 
             Field<UsuarioType>("deleteUser",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }),
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<WhereExpressionGraph>> { Name = "where" }),
                 resolve: context => DeleteUser(context));
         }
 
         private object AddUser(ResolveFieldContext<object> context)
         {
             var usuario = context.GetArgument<Domain.Usuario.Usuario>("usuario");
-            var perfil = this.profileRepository.GetProfile("Comum");
-            var user = new Domain.Usuario.Usuario(Guid.NewGuid(), usuario.Name, usuario.Email, usuario.Age, usuario.Vip, usuario.Salario, perfil.Id, null, usuario.Status);
+            var perfil = this.profileRepository.GetProfile(p=> p.Name == "Comum");
+            var user = new Domain.Usuario.Usuario(Guid.NewGuid(), usuario.Name, usuario.Email, usuario.Age, usuario.Vip, usuario.Salario, perfil[0].Id, null, usuario.Status);
 
             if (user.IsValid)
                 this.usersRepository.Add(user);
@@ -44,16 +48,15 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
 
         private object DeleteUser(ResolveFieldContext<object> context)
         {
-            //var id = context.GetArgument<Guid>("id");
-            //var usuario = usersRepository.GetUsers(id).As<Domain.Usuario.Usuario>();
+            var arguments = context.GetArgument<WhereExpression>("where");
+            var usuario = usersRepository.GetUsers(this.makeExpression.GetExpression<Domain.Usuario.Usuario>(arguments));
 
-            //if (usuario != null)
-            //    usersRepository.Delete(usuario);
-            //else
-            //    return new ArgumentException($"Usuario: {id} não encontrado.");
+            if (usuario != null)
+                usersRepository.Delete(usuario[0]);
+            else
+                return new ArgumentException($"Usuario não encontrado.");
 
-            //return usuario;
-            return null;
+            return usuario;
         }
     }
 }
