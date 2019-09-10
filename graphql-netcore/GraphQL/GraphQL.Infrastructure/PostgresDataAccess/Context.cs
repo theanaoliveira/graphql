@@ -8,8 +8,8 @@ namespace GraphQL.Infrastructure.PostgresDataAccess
 {
     public class Context : DbContext
     {
-        public DbSet<Domain.Usuario.Usuario> Usuario { get; set; }
-        public DbSet<Domain.Perfil.Perfil> Perfil { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Perfil> Perfil { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
