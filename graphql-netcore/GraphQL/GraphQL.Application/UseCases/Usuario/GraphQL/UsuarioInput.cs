@@ -13,6 +13,7 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
             Field<BooleanGraphType>("vip");
             Field<NonNullGraphType<FloatGraphType>>("salario");
             Field<UsuarioStatusType>("status");
+            Field<NonNullGraphType<PerfilInput>>("perfil");
         }
     }
 }

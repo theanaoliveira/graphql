@@ -35,7 +35,8 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
         private object AddUser(ResolveFieldContext<object> context)
         {
             var usuario = context.GetArgument<Domain.Usuario.Usuario>("usuario");
-            var perfil = this.profileRepository.GetProfile(p=> p.Name == "Comum");
+            var namePerfil = usuario.Perfil?.Name ?? "Comum";
+            var perfil = this.profileRepository.GetProfile(p=> p.Name == namePerfil);
             var user = new Domain.Usuario.Usuario(Guid.NewGuid(), usuario.Name, usuario.Email, usuario.Age, usuario.Vip, usuario.Salario, perfil[0].Id, null, usuario.Status);
 
             if (user.IsValid)
@@ -56,7 +57,7 @@ namespace GraphQL.Application.UseCases.Usuario.GraphQL
             else
                 return new ArgumentException($"Usuario não encontrado.");
 
-            return usuario;
+            return usuario[0];
         }
     }
 }

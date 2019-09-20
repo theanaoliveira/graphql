@@ -7,6 +7,7 @@ namespace GraphQL.Application.UseCases.Expressions.Where
         public WhereExpressionGraph()
         {
             Field(f => f.Field);
+            Field<NonNullGraphType<ExpressionType>>("expression");
             Field(f => f.Value);
         }
     }
