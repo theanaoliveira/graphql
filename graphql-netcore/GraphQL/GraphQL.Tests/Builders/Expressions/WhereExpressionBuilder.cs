@@ -1,7 +1,4 @@
-﻿using GraphQL.Application.UseCases.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GraphQL.Application.UseCases.Expressions.Where;
 
 namespace GraphQL.Tests.Builders.Expressions
 {
