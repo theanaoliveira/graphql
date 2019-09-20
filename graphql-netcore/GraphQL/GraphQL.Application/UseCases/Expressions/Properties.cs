@@ -8,7 +8,7 @@ namespace GraphQL.Application.UseCases.Expressions
         public PropertyInfo GetProperty<T>(string field) where T : class
         {
             var properties = typeof(T).GetProperties();
-            var property = properties.Where(w => w.Name.ToUpper() == field.ToUpper()).First();
+            var property = properties.Where(w => w.Name.ToUpper() == field.ToUpper()).FirstOrDefault();
 
             return property;
         }

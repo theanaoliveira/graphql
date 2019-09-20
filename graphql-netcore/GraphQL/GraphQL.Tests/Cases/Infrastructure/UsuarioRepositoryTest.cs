@@ -54,7 +54,7 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(2)]
         public void ShouldDeleteUser()
         {
-            var ret = usersRepository.Delete(UsuarioBuilder.New().Build());
+            var ret = usersRepository.Delete(UsuarioBuilder.New().WithId(id).Build());
             ret.Should().BeGreaterThan(0);
         }
     }

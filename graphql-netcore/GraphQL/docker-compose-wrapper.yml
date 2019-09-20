@@ -1,5 +1,0 @@
-$ chmod +x docker-compose.sh
-$ ./docker-compose.sh \
-    -f ./frontend/docker/docker-compose.yml \
-    -f ./proxy/docker/docker-compose.yml \
-    -p 016 up
