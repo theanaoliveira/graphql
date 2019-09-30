@@ -24,8 +24,8 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(0)]
         public void ShouldAddNewProfile()
         {
-            var user = PerfilBuilder.New().WithId(id).Build();
-            var ret = profileRepository.Add(user);
+            var profile = PerfilBuilder.New().WithId(id).Build();
+            var ret = profileRepository.Add(profile);
 
             ret.Should().BeGreaterThan(0);
         }
@@ -34,26 +34,26 @@ namespace GraphQL.Tests.Cases.Infrastructure
         [TestPriority(1)]
         public void ShouldGetAllProfiles()
         {
-            var users = profileRepository.GetProfile();
-            users.Should().NotBeNull();
-            users.Should().HaveCountGreaterThan(0);
+            var profiles = profileRepository.GetProfile();
+            profiles.Should().NotBeNull();
+            profiles.Should().HaveCountGreaterThan(0);
         }
 
         [Fact]
         [TestPriority(1)]
         public void ShouldGetProfileById()
         {
-            var users = profileRepository.GetProfile(u=> u.Id == id);
+            var profiles = profileRepository.GetProfile(u=> u.Id == id);
 
-            users.Should().NotBeNull();
-            users[0].Id.Should().Be(id);
+            profiles.Should().NotBeNull();
+            profiles[0].Id.Should().Be(id);
         }
 
         [Fact]
         [TestPriority(2)]
         public void ShouldDeleteProfile()
         {
-            var ret = profileRepository.Delete(PerfilBuilder.New().Build());
+            var ret = profileRepository.Delete(PerfilBuilder.New().WithId(id).Build());
             ret.Should().BeGreaterThan(0);
         }
     }

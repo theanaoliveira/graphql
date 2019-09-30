@@ -5,6 +5,7 @@ namespace GraphQL.Tests.Builders.Expressions
     public class WhereExpressionBuilder
     {
         public string Field;
+        public Expression Expression;
         public string Value;
 
         public static WhereExpressionBuilder New()
@@ -12,6 +13,7 @@ namespace GraphQL.Tests.Builders.Expressions
             return new WhereExpressionBuilder()
             {
                 Field = "name",
+                Expression = Expression.Equals,
                 Value = "Ana Caroline"
             };
         }
@@ -19,6 +21,12 @@ namespace GraphQL.Tests.Builders.Expressions
         public WhereExpressionBuilder WithField(string field)
         {
             Field = field;
+            return this;
+        }
+
+        public WhereExpressionBuilder WithExpression(Expression expression)
+        {
+            Expression = expression;
             return this;
         }
 
@@ -32,6 +40,7 @@ namespace GraphQL.Tests.Builders.Expressions
             => new WhereExpression()
             {
                 Field = Field,
+                Expression = Expression,
                 Value = Value
             };
     }

@@ -48,12 +48,12 @@ namespace GraphQL.Application.UseCases.Perfil.GraphQL
             var arguments = context.GetArgument<WhereExpression>("where");
             var perfil = this.profileRepository.GetProfile(this.makeExpression.GetExpression<Domain.Perfil.Perfil>(arguments));
 
-            if (perfil != null)
+            if (perfil?.Count > 0)
                 this.profileRepository.Delete(perfil[0]);
             else
                 return new ArgumentException($"Perfil não encontrado.");
 
-            return perfil;
+            return perfil[0];
         }
     }
 }
