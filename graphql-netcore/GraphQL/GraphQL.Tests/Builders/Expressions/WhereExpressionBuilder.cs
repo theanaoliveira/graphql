@@ -1,4 +1,4 @@
-﻿using GraphQL.Application.UseCases.Expressions.Where;
+﻿using Expressions.Where;
 
 namespace GraphQL.Tests.Builders.Expressions
 {

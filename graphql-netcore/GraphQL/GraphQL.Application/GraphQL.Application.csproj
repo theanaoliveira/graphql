@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Expressions" Version="1.0.0-CI-20191004-182046" />
     <PackageReference Include="GraphQL" Version="2.4.0" />
   </ItemGroup>
 

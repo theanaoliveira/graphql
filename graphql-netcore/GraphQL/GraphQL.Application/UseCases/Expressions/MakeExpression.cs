@@ -1,4 +1,4 @@
-﻿using GraphQL.Application.UseCases.Expressions.Where;
+﻿using Expressions.Where;
 using System;
 using System.Linq.Expressions;
 
@@ -17,16 +17,16 @@ namespace GraphQL.Application.UseCases.Expressions
         {
             var property = properties.GetProperty<T>(where.Field);
             Expression<Func<T, bool>> expression = null;
-            
+
             switch (where.Expression)
             {
-                case Where.Expression.Equals:
-                    expression = func=> func.GetPropertyValue(property.Name).ToString() == where.Value;
+                case 0:
+                    expression = func => func.GetPropertyValue(property.Name).ToString() == where.Value;
                     break;
-                case Where.Expression.Contains:
+                case (Expressions.Where.Expression)1:
                     expression = func => func.GetPropertyValue(property.Name).ToString().Contains(where.Value);
                     break;
-                case Where.Expression.Diff:
+                case 2:
                     expression = func => func.GetPropertyValue(property.Name).ToString() != where.Value;
                     break;
             }

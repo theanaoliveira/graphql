@@ -1,6 +1,6 @@
-﻿using GraphQL.Application.Repositories;
+﻿using Expressions.Where;
+using GraphQL.Application.Repositories;
 using GraphQL.Application.UseCases.Expressions;
-using GraphQL.Application.UseCases.Expressions.Where;
 using GraphQL.Types;
 using System.Linq;
 
