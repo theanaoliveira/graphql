@@ -20,15 +20,15 @@ namespace GraphQL.Application.UseCases.Expressions
 
             switch (where.Expression)
             {
-                case 0:
-                    expression = func => func.GetPropertyValue(property.Name).ToString() == where.Value;
-                    break;
-                case (Expressions.Where.Expression)1:
-                    expression = func => func.GetPropertyValue(property.Name).ToString().Contains(where.Value);
-                    break;
-                case 2:
-                    expression = func => func.GetPropertyValue(property.Name).ToString() != where.Value;
-                    break;
+                //case 0:
+                //    expression = func => func.GetPropertyValue(property.Name).ToString() == where.Value;
+                //    break;
+                //case (Expressions.Where.Expression)1:
+                //    expression = func => func.GetPropertyValue(property.Name).ToString().Contains(where.Value);
+                //    break;
+                //case 2:
+                //    expression = func => func.GetPropertyValue(property.Name).ToString() != where.Value;
+                //    break;
             }
 
             return expression;

@@ -9,10 +9,11 @@ COPY ["GraphQL.Webapi/GraphQL.Webapi.csproj", "GraphQL.Webapi/"]
 RUN dotnet restore "GraphQL.Webapi/GraphQL.Webapi.csproj"
 COPY . .
 WORKDIR "/src/GraphQL.Webapi"
-RUN dotnet build "GraphQL.Webapi.csproj" -c Release -o /app
+RUN dotnet restore
+RUN dotnet build "GraphQL.Webapi.csproj" -c Release -o /app --no-restore
 
 FROM build AS publish
-RUN dotnet publish "GraphQL.Webapi.csproj" -c Release -o /app
+RUN dotnet publish "GraphQL.Webapi.csproj" -c Release -o /app --no-restore
 
 FROM base AS final
 WORKDIR /app
